@@ -42,8 +42,14 @@ npm install
 npm run dev
 ```
 
-The frontend defaults to `http://localhost:8000/api`. Set
-`VITE_API_URL` in `frontend/.env` when the API runs elsewhere.
+The frontend uses the local FastAPI host during development. Production builds
+default to `https://kaushal-mo8y.onrender.com/api`; override this with the
+build-time `VITE_API_URL` environment variable when deploying the static site.
+On Render, add `VITE_API_URL=https://kaushal-mo8y.onrender.com/api` to the
+frontend Static Site environment and redeploy. Add the deployed frontend's
+exact origin to `CORS_ORIGINS` on the backend Web Service and redeploy the
+backend. The two Render frontend origins currently in use are already included
+in the backend's default CORS allowlist.
 
 ## Job and application workflow
 

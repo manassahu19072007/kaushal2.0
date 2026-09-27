@@ -15,7 +15,16 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins_list(self) -> List[str]:
-        return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+        configured_origins = [
+            origin.strip()
+            for origin in self.CORS_ORIGINS.split(",")
+            if origin.strip()
+        ]
+        render_frontend_origins = [
+            "https://kaushal-frontend.onrender.com",
+            "https://kaushal2-0-1.onrender.com",
+        ]
+        return list(dict.fromkeys(configured_origins + render_frontend_origins))
 
     class Config:
         case_sensitive = True

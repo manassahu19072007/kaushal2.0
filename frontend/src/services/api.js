@@ -1,13 +1,11 @@
 import axios from "axios";
 
-const defaultApiHost =
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1"
-    ? window.location.hostname
-    : "localhost";
+const defaultApiBaseUrl = import.meta.env.DEV
+  ? `${window.location.protocol}//${window.location.hostname}:8000/api`
+  : "https://kaushal-mo8y.onrender.com/api";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || `http://${defaultApiHost}:8000/api`,
+  baseURL: import.meta.env.VITE_API_URL || defaultApiBaseUrl,
   headers: {
     "Content-Type": "application/json",
   },
